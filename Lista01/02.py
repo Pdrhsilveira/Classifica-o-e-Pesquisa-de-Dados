@@ -73,6 +73,42 @@ print("Elementos aleatórios sem repetição:", dados, "| Tempo de execução:",
 tempo_inverso = medir_tempo(bubble, inverso)
 print("Elementos ordenados na ordem inversa:", inverso, "| Tempo de execução:", tempo_inverso, "segundos")
 
+import time
+
+def selection_sort(data):
+    n = len(data)
+    for i in range(n - 1):
+        menor_id = i
+        for j in range(i + 1, n):
+            if data[j] < data[menor_id]:
+                menor_id = j
+
+        data[i], data[menor_id] = data[menor_id], data[i] 
+
+def medir_tempo(func, data):
+    inicio = time.time()
+    func(data)
+    fim = time.time()
+    return fim - inicio
+
+dados = [3, 2, 1, 4, 5, 9, 8, 7, 6, 10, 15, 14, 13, 12, 11, 20, 19, 18, 17, 16]
+inverso = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+duplicados = [1, 1, 4, 5, 2, 4, 3, 7, 7, 8, 2, 9, 9, 6, 5, 6, 3, 10, 10, 8]
+ordenados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+
+tempo_dados = medir_tempo(selection_sort ,dados)
+print("Elementos aleatórios sem repetição:", dados, "| Tempo de execução:", tempo_dados, "segundos")
+
+tempo_inverso = medir_tempo(selection_sort ,inverso)
+print("Elementos ordenados na ordem inversa:", inverso, "| Tempo de execução:", tempo_inverso, "segundos")
+
+tempo_duplicados = medir_tempo(selection_sort ,duplicados)
+print("Elementos duplicados:", duplicados, "| Tempo de execução:", tempo_duplicados, "segundos")
+
+tempo_ordenados = medir_tempo(selection_sort ,ordenados)
+print("Elementos já ordenados:", ordenados, "| Tempo de execução:", tempo_ordenados, "segundos")
+
 tempo_duplicados = medir_tempo(bubble, duplicados)
 print("Elementos duplicados:", duplicados, "| Tempo de execução:", tempo_duplicados, "segundos")
 
